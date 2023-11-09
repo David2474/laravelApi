@@ -17,10 +17,12 @@ Route::get('marvel', function (){
     $privateKey = '2cf759668ad28185c25df7968bf977d3117bf6b2';
     $timestamp = time();
     $hash = md5($timestamp . $privateKey . $publicKey);
-    $limit = 7; // Cantidad de cómics por página
+    $limit = 5; // Obtener 5 cómics por página
 
     // Obtiene el número de página actual de la solicitud
     $page = request()->input('page', 1);
+
+    $offset = ($page - 1) * $limit;
 
     $client = new Client();
 
@@ -29,9 +31,11 @@ Route::get('marvel', function (){
             'ts' => $timestamp,
             'apikey' => $publicKey,
             'hash' => $hash,
-            'offset' => ($page - 1) * $limit, // Calcula el desplazamiento para la página actual
+            'limit' => $limit,
+            'offset' => $offset,
         ],
     ]);
+
     
     $data = json_decode($response->getBody());
     
@@ -43,5 +47,5 @@ Route::get('marvel', function (){
     }
     $comics = collect($comics);
     return view('marvel.index', ['comics' => $comics, 'page' => $page]);
-    
+
 })->name('marvel.index');
