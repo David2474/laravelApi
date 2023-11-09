@@ -40,6 +40,8 @@ Route::get('marvel', function (){
     $data = json_decode($response->getBody());
     
     $comics = $data->data->results;
+    
+
     // dd($data);
 
     foreach ($comics as $comic) {
