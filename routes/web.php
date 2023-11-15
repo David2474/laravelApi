@@ -4,24 +4,20 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MarvelController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/marvel', function () {
-    Route::get('marvel.index', [MarvelController::class, 'obtenerComic'])->name('marvel.index');
-});
+Route::get('/marvel', [MarvelController::class, 'obtenerComic'])->name('marvel.index');
+
+
+// web.php
+Route::get('/marvel/{comic}', [MarvelController::class, 'show'])->name('marvel.detalle');
+
+
+
+Route::get('/sync-comics', [MarvelController::class, 'syncComics']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

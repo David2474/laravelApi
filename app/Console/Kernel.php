@@ -13,7 +13,15 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+        
     }
+
+    // app/Console/Kernel.php
+
+    protected $commands = [
+        \App\Console\Commands\SyncComics::class,
+    ];
+
 
     /**
      * Register the commands for the application.
