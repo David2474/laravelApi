@@ -6,7 +6,17 @@ module.exports = {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'marvel-nav': "url('/public/img/Marvel.png')",
+      }
+    },
+    fontFamily: {
+      sans: ['Ysabeau SC', ],
+      serif: ['Merriweather', 'serif'],
+      orbitron: ['Orbitron']
+      
+    },
   },
   plugins: [],
 }

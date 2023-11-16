@@ -18,7 +18,7 @@ class MarvelController extends Controller{
 
     public function show($comic){
         $comic = Comic::find($comic);
-        // dd($comic);
+        // dd($comic); 
         return view('marvel.detalle', compact('comic'));
     }
 }
