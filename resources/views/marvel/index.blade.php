@@ -17,7 +17,6 @@
             </span>
       </div>
     </nav>
-
 </section>
 
 
@@ -41,9 +40,21 @@
         @endforeach
     </div>
 
-    <div class="mt-4">
-        {{ $comics->links() }} <!-- Esto imprimirá los enlaces de paginación -->
+    <div class="flex items-center mt-[-50px] mb-20 justify-between">
+    <div class="flex-1 flex justify-between">
+        @if ($comics->onFirstPage())
+            <span class="mx-6 font-[Ysabeau SC] text-xl bg-zinc-600 text-black font-bold py-2 px-4 border-b-4 border-zinc-700 rounded">Anterior</span>
+        @else
+            <a href="{{ $comics->previousPageUrl() }}" class="mx-6 font-[Ysabeau SC] text-xl bg-zinc-400 hover:bg-zinc-300 text-black font-bold py-2 px-4 border-b-4 border-zinc-700 hover:border-zinc-600 rounded">Anterior</a>
+        @endif
+
+        @if ($comics->hasMorePages())
+            <a href="{{ $comics->nextPageUrl() }}" class="mx-6 font-[Ysabeau SC] text-xl bg-zinc-400 hover:bg-zinc-300 text-black font-bold py-2 px-4 border-b-4 border-zinc-700 hover:border-zinc-600 rounded">Siguiente</a>
+        @else
+            <span class="mx-6 font-[Ysabeau SC] text-xl bg-zinc-600  text-black font-bold py-2 px-4 border-b-4 border-zinc-700 rounded">Siguiente</span>
+        @endif
     </div>
+</div>
 </section>
 <!--CARD COMICS FIN-->
 
@@ -137,7 +148,7 @@
         </div>
     </div>
     <div class="px-4 py-6 bg-gray-100 dark:bg-slate-600 md:flex md:items-center md:justify-between">
-        <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2023 <a href="https://flowbite.com/">Flowbite™</a>. All Rights Reserved.
+        <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2023. All Rights Reserved.
         </span>
         <div class="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
             <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">

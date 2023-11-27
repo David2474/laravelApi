@@ -12,6 +12,7 @@ class MarvelController extends Controller{
     public function obtenerComic(){
         // Obtén los cómics de la base de datos para mostrarlos en la vista
         $comics = Comic::paginate(4);
+        // dd($comics);
         return view('marvel.index', compact('comics'));
     }
 
